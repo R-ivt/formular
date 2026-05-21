@@ -1,70 +1,45 @@
 <!DOCTYPE html>
 <head>
     <title>Ahoj</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bilbo&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class=obdelnik>
+    <?php
+        echo "<h1 class=nadpis>Ahoj, vyplň tento kvíz </h1>";
+        $questions = ["Je pravda, že světlo ze Slunce dorazí na Zemi za méně než 10 minut?",
+                    " Může člověk přežít bez spánku déle než bez vody?",
+                    "Obsahuje lidské tělo více bakteriálních buněk než lidských buněk?",
+                    "Je nula sudé číslo?",
+                    "Může být blesk teplejší než povrch Slunce?",
+                    "Byli dinosauři a lidé někdy současně na Zemi?",
+                    "Dokáže chobotnice otevřít zavařovací sklenici?",
+                    "Je diamant vyrobený ze stejného prvku jako tuha v tužce?",
+                    "Slyší člověk ve vesmíru zvuk bez skafandru?",
+                    "Je pravda, že banány jsou mírně radioaktivní?"];
 
-<?php
-$body = 0 ;
-echo "<h1>Ahoj, vyplň tento kvíz </h1>";
-?>
+    ?>
+    <form action="vysledek.php">
+            <?php
+            $i=1 ;
+            foreach ($questions as $question) {
+                echo "<label><h1> $question </h1></label>";
+                echo "<input type='text' name='answer$i'>
+                        <br>";
+                $i++ ;
+                    }
+        ?>
+        <br>
+        <br>
 
-<form>
-    <label>Jméno:</label>
-    <input type="text" name="jmeno">
+        <button class=odeslat>Odeslat</button>
 
-    <br>
-
-    <label> Štěká pes ? :</label>
-    <input type="text" name="answer1">
-
-    <br>
-    
-    <label> Žije kočka ve vodě ? :</label>
-    <input type="text" name="answer2">
-
-    <br>
-
-    <label> Je králík masožravec? :</label>
-    <input type="text" name="answer3">
-
-    <br>
-
-    <button>Odeslat</button>
-</form>
-
-<?php 
-if (isset($_GET["answer1"]) and (strtoupper($_GET["answer1"]) == "ANO")) {
-    $body++ ;
-}
- 
-if (isset($_GET["answer2"]) and (strtoupper($_GET["answer2"])  == "NE")) {
-    $body++ ;
-}
-
-if (isset($_GET["answer3"]) and (strtoupper($_GET["answer3"]) == "NE")) {
-    $body++ ;
-}
-
-if (isset($_GET["jmeno"]))
-    {echo "<h1> ". $_GET["jmeno"] ." měl si $body  bodů. </h1> ";
-    if ($body == 0)
-        {echo "<h2>Takhle hrozný výsledek jsem ještě neviděl.</h2>" ;
-        echo "<img src='NEJHORSI.jpg'>";}
-    elseif ($body == 1)
-        {echo "<h2>Hmmm tak tohle jse asi radši neviděla.</h2>" ;
-        echo "<img src='HMMMM.jpg'>";}
-    elseif ($body == 2)
-        {echo "<h2>Chybí ti jeden bod!!!</h2>" ;
-        echo "<img src='CHYBA.jpg'>";}
-    elseif ($body == 3)
-        {echo "<h2>Super!</h2>" ;
-        echo "<img src='sUPER.jpg'>";}
-}  
-
-?>
-
+    </form>
+</div>
 
 </body>
 </html>
